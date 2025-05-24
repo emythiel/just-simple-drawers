@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:barrel"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "IBI",
+    " I ",
+    "IBI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "justsimpledrawers:drawer_double"
+  }
+}

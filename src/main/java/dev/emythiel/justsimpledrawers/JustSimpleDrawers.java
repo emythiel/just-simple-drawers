@@ -44,8 +44,8 @@ public class JustSimpleDrawers {
         ModCreativeModTabs.register(modEventBus);
 
         // Register items and blocks
-        ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

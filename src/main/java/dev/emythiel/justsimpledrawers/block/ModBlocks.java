@@ -28,6 +28,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> DRAWER_COMPACTING = registerBlock("drawer_compacting",
         () -> new Block(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
+    public static final DeferredBlock<Block> DRAWER_CONTROLLER = registerBlock("drawer_controller",
+        () -> new Block(BlockBehaviour.Properties.of()
+            .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
