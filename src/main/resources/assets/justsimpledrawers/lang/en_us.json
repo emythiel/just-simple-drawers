@@ -8,5 +8,7 @@
   "block.justsimpledrawers.drawer_single": "Drawer Vault",
   "block.justsimpledrawers.drawer_double": "Double Drawer Vault",
   "block.justsimpledrawers.drawer_quad": "Quad Drawer Vault",
-  "block.justsimpledrawers.drawer_compacting": "Compacting Drawer Vault"
+  "block.justsimpledrawers.drawer_compacting": "Compacting Drawer Vault",
+
+  "creativetab.justsimpledrawers": "Just Simple Drawers"
 }
