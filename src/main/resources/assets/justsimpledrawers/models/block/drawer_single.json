@@ -1,66 +1,88 @@
 {
-	"credit": "Made with Blockbench",
-	"parent": "block/block",
-	"textures": {
-		"0": "justsimpledrawers:block/drawer_single",
-		"1": "justsimpledrawers:block/drawer_back",
-		"2": "justsimpledrawers:block/drawer_side",
-		"3": "justsimpledrawers:block/drawer_trim",
-		"particle": "justsimpledrawers:block/drawer_side"
-	},
-	"elements": [
-		{
-			"name": "Main Block",
-			"from": [0, 0, 1],
-			"to": [16, 16, 16],
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "north"},
-				"east": {"uv": [0, 0, 16, 15], "rotation": 270, "texture": "#2", "cullface": "east"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "south"},
-				"west": {"uv": [0, 0, 16, 15], "rotation": 90, "texture": "#2", "cullface": "west"},
-				"up": {"uv": [0, 1, 16, 16], "texture": "#2", "cullface": "up"},
-				"down": {"uv": [0, 0, 16, 15], "texture": "#2", "cullface": "down"}
-			}
-		},
-		{
-			"name": "Top Trim",
-			"from": [0, 15, 0],
-			"to": [16, 16, 1],
-			"faces": {
-				"north": {"uv": [1, 0, 2, 16], "rotation": 90, "texture": "#3", "cullface": "north"},
-				"up": {"uv": [1, 0, 2, 16], "rotation": 90, "texture": "#3", "cullface": "up"},
-				"down": {"uv": [0, 0, 1, 16], "rotation": 90, "texture": "#3"}
-			}
-		},
-		{
-			"name": "Bottom Trim",
-			"from": [0, 0, 0],
-			"to": [16, 1, 1],
-			"faces": {
-				"north": {"uv": [1, 0, 2, 16], "rotation": 90, "texture": "#3", "cullface": "north"},
-				"up": {"uv": [0, 0, 1, 16], "rotation": 90, "texture": "#3"},
-				"down": {"uv": [1, 0, 2, 16], "rotation": 90, "texture": "#3", "cullface": "down"}
-			}
-		},
-		{
-			"name": "Right Trim",
-			"from": [0, 0, 0],
-			"to": [1, 16, 1],
-			"faces": {
-				"north": {"uv": [0, 0, 1, 16], "texture": "#3", "cullface": "north"},
-				"east": {"uv": [0, 0, 1, 16], "texture": "#3"},
-				"west": {"uv": [1, 0, 2, 16], "texture": "#3", "cullface": "west"}
-			}
-		},
-		{
-			"name": "Left Trim",
-			"from": [15, 0, 0],
-			"to": [16, 16, 1],
-			"faces": {
-				"north": {"uv": [0, 0, 1, 16], "texture": "#3", "cullface": "north"},
-				"east": {"uv": [1, 0, 2, 16], "texture": "#3", "cullface": "east"},
-				"west": {"uv": [0, 0, 1, 16], "texture": "#3"}
-			}
-		}
-	]
+  "credit": "Made with Blockbench",
+  "parent": "block/block",
+  "textures": {
+    "0": "justsimpledrawers:block/drawer_trim",
+    "1": "justsimpledrawers:block/drawer_back",
+    "2": "justsimpledrawers:block/drawer_side",
+    "3": "justsimpledrawers:block/drawer_single",
+    "particle": "justsimpledrawers:block/drawer_side"
+  },
+  "elements": [
+    {
+      "name": "Main Block",
+      "from": [0, 0, 1],
+      "to": [16, 16, 16],
+      "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 1]},
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#3"},
+        "east": {"uv": [0, 0, 16, 15], "rotation": 270, "texture": "#2"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+        "west": {"uv": [0, 0, 16, 15], "rotation": 90, "texture": "#2"},
+        "up": {"uv": [0, 0, 16, 15], "rotation": 180, "texture": "#2"},
+        "down": {"uv": [0, 0, 16, 15], "texture": "#2"}
+      }
+    },
+    {
+      "name": "Trim Top",
+      "from": [0, 15, 0],
+      "to": [16, 16, 1],
+      "faces": {
+        "north": {"uv": [0, 0, 1, 16], "rotation": 90, "texture": "#0"},
+        "east": {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "south": {"uv": [0, 0, 16, 1], "texture": "#missing"},
+        "west": {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "up": {"uv": [0, 0, 1, 16], "rotation": 90, "texture": "#0"},
+        "down": {"uv": [0, 0, 1, 16], "rotation": 90, "texture": "#0"}
+      }
+    },
+    {
+      "name": "Trim Left",
+      "from": [15, 1, 0],
+      "to": [16, 15, 1],
+      "faces": {
+        "north": {"uv": [0, 1, 1, 15], "texture": "#0"},
+        "east": {"uv": [0, 1, 1, 15], "texture": "#0"},
+        "south": {"uv": [0, 0, 1, 14], "texture": "#missing"},
+        "west": {"uv": [0, 1, 1, 15], "texture": "#0"},
+        "up": {"uv": [0, 0, 1, 1], "texture": "#missing"},
+        "down": {"uv": [0, 0, 1, 1], "texture": "#missing"}
+      }
+    },
+    {
+      "name": "Trim Right",
+      "from": [0, 1, 0],
+      "to": [1, 15, 1],
+      "faces": {
+        "north": {"uv": [0, 1, 1, 15], "texture": "#0"},
+        "east": {"uv": [0, 1, 1, 15], "texture": "#0"},
+        "south": {"uv": [0, 0, 1, 14], "texture": "#missing"},
+        "west": {"uv": [0, 1, 1, 15], "texture": "#0"},
+        "up": {"uv": [0, 0, 1, 1], "texture": "#missing"},
+        "down": {"uv": [0, 0, 1, 1], "texture": "#missing"}
+      }
+    },
+    {
+      "name": "Trim Bottom",
+      "from": [0, 0, 0],
+      "to": [16, 1, 1],
+      "faces": {
+        "north": {"uv": [0, 0, 1, 16], "rotation": 90, "texture": "#0"},
+        "east": {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "south": {"uv": [0, 0, 16, 1], "texture": "#missing"},
+        "west": {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "up": {"uv": [0, 0, 1, 16], "rotation": 90, "texture": "#0"},
+        "down": {"uv": [0, 0, 1, 16], "rotation": 90, "texture": "#0"}
+      }
+    }
+  ],
+  "groups": [
+    0,
+    {
+      "name": "Trims",
+      "origin": [0, 0, 0],
+      "color": 0,
+      "children": [1, 2, 3, 4]
+    }
+  ]
 }
