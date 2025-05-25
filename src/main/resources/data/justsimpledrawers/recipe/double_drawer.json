@@ -5,20 +5,17 @@
     "B": {
       "item": "minecraft:barrel"
     },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "P": {
-      "item": "minecraft:piston"
+    "I": {
+      "item": "minecraft:iron_ingot"
     }
   },
   "pattern": [
-    "GPG",
-    "GBG",
-    "BGB"
+    "IBI",
+    " I ",
+    "IBI"
   ],
   "result": {
     "count": 1,
-    "id": "justsimpledrawers:drawer_compacting"
+    "id": "justsimpledrawers:double_drawer"
   }
 }

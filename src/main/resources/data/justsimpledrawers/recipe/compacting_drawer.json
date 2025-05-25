@@ -8,17 +8,17 @@
     "G": {
       "item": "minecraft:gold_ingot"
     },
-    "R": {
-      "item": "minecraft:redstone_torch"
+    "P": {
+      "item": "minecraft:piston"
     }
   },
   "pattern": [
-    "GRG",
+    "GPG",
     "GBG",
-    "GGG"
+    "BGB"
   ],
   "result": {
     "count": 1,
-    "id": "justsimpledrawers:drawer_controller"
+    "id": "justsimpledrawers:compacting_drawer"
   }
 }

@@ -1,15 +1,15 @@
 {
-  "block.justsimpledrawers.drawer_single": "Drawer Vault",
-  "block.justsimpledrawers.drawer_double": "Double Drawer Vault",
-  "block.justsimpledrawers.drawer_quad": "Quad Drawer Vault",
-  "block.justsimpledrawers.drawer_compacting": "Compacting Drawer Vault",
-  "block.justsimpledrawers.drawer_controller": "Drawer Vault Controller",
+  "block.justsimpledrawers.single_drawer": "Single Drawer Vault",
+  "block.justsimpledrawers.double_drawer": "Double Drawer Vault",
+  "block.justsimpledrawers.quad_drawer": "Quad Drawer Vault",
+  "block.justsimpledrawers.compcating_drawer": "Compacting Drawer Vault",
+  "block.justsimpledrawers.controller": "Drawer Vault Controller",
 
-  "item.justsimpledrawers.drawer_upgrade_base": "Drawer Vault Upgrade Base",
-  "item.justsimpledrawers.drawer_upgrade_t1": "Drawer Vault Upgrade Tier 1",
-  "item.justsimpledrawers.drawer_upgrade_t2": "Drawer Vault Upgrade Tier 2",
-  "item.justsimpledrawers.drawer_upgrade_t3": "Drawer Vault Upgrade Tier 3",
-  "item.justsimpledrawers.drawer_upgrade_t4": "Drawer Vault Upgrade Tier 4",
+  "item.justsimpledrawers.upgrade_base": "Drawer Vault Upgrade Base",
+  "item.justsimpledrawers.upgrade_t1": "Drawer Vault Upgrade Tier 1",
+  "item.justsimpledrawers.upgrade_t2": "Drawer Vault Upgrade Tier 2",
+  "item.justsimpledrawers.upgrade_t3": "Drawer Vault Upgrade Tier 3",
+  "item.justsimpledrawers.upgrade_t4": "Drawer Vault Upgrade Tier 4",
 
   "creativetab.justsimpledrawers": "Just Simple Drawers"
 }

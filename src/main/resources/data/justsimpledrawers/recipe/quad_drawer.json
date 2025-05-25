@@ -10,12 +10,12 @@
     }
   },
   "pattern": [
-    "IBI",
-    " I ",
-    "IBI"
+    "BIB",
+    "III",
+    "BIB"
   ],
   "result": {
     "count": 1,
-    "id": "justsimpledrawers:drawer_double"
+    "id": "justsimpledrawers:quad_drawer"
   }
 }

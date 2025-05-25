@@ -17,20 +17,20 @@ public class ModCreativeModTabs {
 
     public static final Supplier<CreativeModeTab> JUSTSIMPLEDRAWERS_TAB = CREATIVE_MODE_TAB.register("justsimpledrawers_tab",
         () -> CreativeModeTab.builder()
-            .icon(() -> new ItemStack(ModBlocks.DRAWER_SINGLE.get()))
+            .icon(() -> new ItemStack(ModBlocks.SINGLE_DRAWER.get()))
             .title(Component.translatable("creativetab.justsimpledrawers"))
             .displayItems((params, output) -> {
-                output.accept(ModBlocks.DRAWER_SINGLE.get());
-                output.accept(ModBlocks.DRAWER_DOUBLE.get());
-                output.accept(ModBlocks.DRAWER_QUAD.get());
-                output.accept(ModBlocks.DRAWER_COMPACTING.get());
-                output.accept(ModBlocks.DRAWER_CONTROLLER.get());
+                output.accept(ModBlocks.SINGLE_DRAWER.get());
+                output.accept(ModBlocks.DOUBLE_DRAWER.get());
+                output.accept(ModBlocks.QUAD_DRAWER.get());
+                output.accept(ModBlocks.COMPACTING_DRAWER.get());
+                output.accept(ModBlocks.CONTROLLER.get());
 
-                output.accept(ModItems.DRAWER_UPGRADE_BASE.get());
-                output.accept(ModItems.DRAWER_UPGRADE_T1.get());
-                output.accept(ModItems.DRAWER_UPGRADE_T2.get());
-                output.accept(ModItems.DRAWER_UPGRADE_T3.get());
-                output.accept(ModItems.DRAWER_UPGRADE_T4.get());
+                output.accept(ModItems.UPGRADE_BASE.get());
+                output.accept(ModItems.UPGRADE_T1.get());
+                output.accept(ModItems.UPGRADE_T2.get());
+                output.accept(ModItems.UPGRADE_T3.get());
+                output.accept(ModItems.UPGRADE_T4.get());
             })
             .build());
 

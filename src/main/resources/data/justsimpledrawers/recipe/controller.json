@@ -5,17 +5,20 @@
     "B": {
       "item": "minecraft:barrel"
     },
-    "I": {
-      "item": "minecraft:iron_ingot"
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone_torch"
     }
   },
   "pattern": [
-    "IBI",
-    "BIB",
-    "IBI"
+    "GRG",
+    "GBG",
+    "GGG"
   ],
   "result": {
     "count": 1,
-    "id": "justsimpledrawers:drawer_quad"
+    "id": "justsimpledrawers:controller"
   }
 }

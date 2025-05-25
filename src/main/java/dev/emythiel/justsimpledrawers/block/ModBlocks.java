@@ -16,19 +16,19 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(JustSimpleDrawers.MOD_ID);
 
-    public static final DeferredBlock<Block> DRAWER_SINGLE = registerBlock("drawer_single",
+    public static final DeferredBlock<Block> SINGLE_DRAWER = registerBlock("single_drawer",
         () -> new Block(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-    public static final DeferredBlock<Block> DRAWER_DOUBLE = registerBlock("drawer_double",
+    public static final DeferredBlock<Block> DOUBLE_DRAWER = registerBlock("double_drawer",
         () -> new Block(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-    public static final DeferredBlock<Block> DRAWER_QUAD = registerBlock("drawer_quad",
+    public static final DeferredBlock<Block> QUAD_DRAWER = registerBlock("quad_drawer",
         () -> new Block(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-    public static final DeferredBlock<Block> DRAWER_COMPACTING = registerBlock("drawer_compacting",
+    public static final DeferredBlock<Block> COMPACTING_DRAWER = registerBlock("compacting_drawer",
         () -> new Block(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-    public static final DeferredBlock<Block> DRAWER_CONTROLLER = registerBlock("drawer_controller",
+    public static final DeferredBlock<Block> CONTROLLER = registerBlock("controller",
         () -> new Block(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
 

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "justsimpledrawers:drawer_compacting"
+          "name": "justsimpledrawers:quad_drawer"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "justsimpledrawers:blocks/drawer_compacting"
+  "random_sequence": "justsimpledrawers:blocks/quad_drawer"
 }

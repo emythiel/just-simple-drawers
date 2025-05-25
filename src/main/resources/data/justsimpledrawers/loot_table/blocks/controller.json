@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "justsimpledrawers:drawer_quad"
+          "name": "justsimpledrawers:controller"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "justsimpledrawers:blocks/drawer_quad"
+  "random_sequence": "justsimpledrawers:blocks/controller"
 }
