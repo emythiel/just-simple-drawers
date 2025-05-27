@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "justsimpledrawers:block/compacting_drawer"
+    },
+    "facing=east": {
+      "model": "justsimpledrawers:block/compacting_drawer",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "justsimpledrawers:block/compacting_drawer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "justsimpledrawers:block/compacting_drawer",
+      "y": 270
     }
   }
 }
