@@ -1,0 +1,9 @@
+{
+  "values": [
+    "justsimpledrawers:single_drawer",
+    "justsimpledrawers:double_drawer",
+    "justsimpledrawers:quad_drawer",
+    "justsimpledrawers:compacting_drawer",
+    "justsimpledrawers:controller"
+  ]
+}

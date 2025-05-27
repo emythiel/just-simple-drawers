@@ -2,7 +2,7 @@
   "block.justsimpledrawers.single_drawer": "Single Drawer Vault",
   "block.justsimpledrawers.double_drawer": "Double Drawer Vault",
   "block.justsimpledrawers.quad_drawer": "Quad Drawer Vault",
-  "block.justsimpledrawers.compcating_drawer": "Compacting Drawer Vault",
+  "block.justsimpledrawers.compacting_drawer": "Compacting Drawer Vault",
   "block.justsimpledrawers.controller": "Drawer Vault Controller",
 
   "item.justsimpledrawers.upgrade_base": "Drawer Vault Upgrade Base",

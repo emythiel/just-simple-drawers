@@ -1,6 +1,9 @@
 package dev.emythiel.justsimpledrawers.block;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
+import dev.emythiel.justsimpledrawers.block.base.CompactingBlock;
+import dev.emythiel.justsimpledrawers.block.base.ControllerBlock;
+import dev.emythiel.justsimpledrawers.block.base.DrawerBlock;
 import dev.emythiel.justsimpledrawers.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -17,19 +20,19 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(JustSimpleDrawers.MOD_ID);
 
     public static final DeferredBlock<Block> SINGLE_DRAWER = registerBlock("single_drawer",
-        () -> new Block(BlockBehaviour.Properties.of()
+        () -> new DrawerBlock(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> DOUBLE_DRAWER = registerBlock("double_drawer",
-        () -> new Block(BlockBehaviour.Properties.of()
+        () -> new DrawerBlock(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> QUAD_DRAWER = registerBlock("quad_drawer",
-        () -> new Block(BlockBehaviour.Properties.of()
+        () -> new DrawerBlock(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> COMPACTING_DRAWER = registerBlock("compacting_drawer",
-        () -> new Block(BlockBehaviour.Properties.of()
+        () -> new CompactingBlock(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> CONTROLLER = registerBlock("controller",
-        () -> new Block(BlockBehaviour.Properties.of()
+        () -> new ControllerBlock(BlockBehaviour.Properties.of()
             .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
 
 
