@@ -1,9 +1,9 @@
 package dev.emythiel.justsimpledrawers;
 
-import dev.emythiel.justsimpledrawers.block.ModBlocks;
-import dev.emythiel.justsimpledrawers.item.ModCreativeModTabs;
-import dev.emythiel.justsimpledrawers.item.ModItems;
-import net.minecraft.world.item.CreativeModeTabs;
+import dev.emythiel.justsimpledrawers.registry.ModBlockEntities;
+import dev.emythiel.justsimpledrawers.registry.ModBlocks;
+import dev.emythiel.justsimpledrawers.registry.ModCreativeModTabs;
+import dev.emythiel.justsimpledrawers.registry.ModItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -44,8 +44,11 @@ public class JustSimpleDrawers {
         ModCreativeModTabs.register(modEventBus);
 
         // Register items and blocks
-        ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+
+        // Register block entities
+        ModBlockEntities.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

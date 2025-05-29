@@ -1,7 +1,6 @@
-package dev.emythiel.justsimpledrawers.item;
+package dev.emythiel.justsimpledrawers.registry;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
-import dev.emythiel.justsimpledrawers.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -23,8 +22,8 @@ public class ModCreativeModTabs {
                 output.accept(ModBlocks.SINGLE_DRAWER.get());
                 output.accept(ModBlocks.DOUBLE_DRAWER.get());
                 output.accept(ModBlocks.QUAD_DRAWER.get());
-                output.accept(ModBlocks.COMPACTING_DRAWER.get());
-                output.accept(ModBlocks.CONTROLLER.get());
+                /*output.accept(ModBlocks.COMPACTING_DRAWER.get());
+                output.accept(ModBlocks.CONTROLLER.get());*/
 
                 output.accept(ModItems.UPGRADE_BASE.get());
                 output.accept(ModItems.UPGRADE_T1.get());

@@ -1,4 +1,4 @@
-package dev.emythiel.justsimpledrawers.item;
+package dev.emythiel.justsimpledrawers.registry;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
 import net.minecraft.world.item.Item;

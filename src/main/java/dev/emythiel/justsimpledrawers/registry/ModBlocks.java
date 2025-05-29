@@ -1,10 +1,7 @@
-package dev.emythiel.justsimpledrawers.block;
+package dev.emythiel.justsimpledrawers.registry;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
-import dev.emythiel.justsimpledrawers.block.base.CompactingBlock;
-import dev.emythiel.justsimpledrawers.block.base.ControllerBlock;
-import dev.emythiel.justsimpledrawers.block.base.DrawerBlock;
-import dev.emythiel.justsimpledrawers.item.ModItems;
+import dev.emythiel.justsimpledrawers.block.DrawerBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -19,22 +16,16 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(JustSimpleDrawers.MOD_ID);
 
+
     public static final DeferredBlock<Block> SINGLE_DRAWER = registerBlock("single_drawer",
         () -> new DrawerBlock(BlockBehaviour.Properties.of()
-            .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
+            .strength(3f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK), 1));
     public static final DeferredBlock<Block> DOUBLE_DRAWER = registerBlock("double_drawer",
         () -> new DrawerBlock(BlockBehaviour.Properties.of()
-            .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
+            .strength(3f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK), 2));
     public static final DeferredBlock<Block> QUAD_DRAWER = registerBlock("quad_drawer",
         () -> new DrawerBlock(BlockBehaviour.Properties.of()
-            .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-    public static final DeferredBlock<Block> COMPACTING_DRAWER = registerBlock("compacting_drawer",
-        () -> new CompactingBlock(BlockBehaviour.Properties.of()
-            .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-    public static final DeferredBlock<Block> CONTROLLER = registerBlock("controller",
-        () -> new ControllerBlock(BlockBehaviour.Properties.of()
-            .strength(4f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-
+            .strength(3f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK), 4));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

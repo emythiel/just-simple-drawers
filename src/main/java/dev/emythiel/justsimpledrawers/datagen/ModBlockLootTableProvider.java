@@ -1,6 +1,6 @@
 package dev.emythiel.justsimpledrawers.datagen;
 
-import dev.emythiel.justsimpledrawers.block.ModBlocks;
+import dev.emythiel.justsimpledrawers.registry.ModBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -19,8 +19,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.SINGLE_DRAWER.get());
         dropSelf(ModBlocks.DOUBLE_DRAWER.get());
         dropSelf(ModBlocks.QUAD_DRAWER.get());
-        dropSelf(ModBlocks.COMPACTING_DRAWER.get());
-        dropSelf(ModBlocks.CONTROLLER.get());
+        //dropSelf(ModBlocks.COMPACTING_DRAWER.get());
+        //dropSelf(ModBlocks.CONTROLLER.get());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package dev.emythiel.justsimpledrawers.datagen;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
-import dev.emythiel.justsimpledrawers.item.ModItems;
+import dev.emythiel.justsimpledrawers.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
