@@ -20,6 +20,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.spongepowered.asm.launch.platform.MixinPlatformAgentMinecraftForge;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(JustSimpleDrawers.MOD_ID)

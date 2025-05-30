@@ -28,7 +28,6 @@ public abstract class StorageBlockEntity extends BlockEntity {
         }
     };
 
-    private int amount;
     private int upgradeMultiplier;
     private boolean lockMode;
     private boolean voidMode;
@@ -43,7 +42,6 @@ public abstract class StorageBlockEntity extends BlockEntity {
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.put("inventory", inventory.serializeNBT(registries));
-        tag.putInt("amount", this.amount);
         tag.putInt("upgradeMultiplier", this.upgradeMultiplier);
         tag.putBoolean("lockMode", this.lockMode);
         tag.putBoolean("voidMode", this.voidMode);
@@ -55,7 +53,6 @@ public abstract class StorageBlockEntity extends BlockEntity {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         this.inventory.deserializeNBT(registries, tag.getCompound("inventory"));
-        this.amount = tag.getInt("amount");
         this.upgradeMultiplier = tag.getInt("upgradeMultiplier");
         this.lockMode = tag.getBoolean("lockMode");
         this.voidMode = tag.getBoolean("voidMode");

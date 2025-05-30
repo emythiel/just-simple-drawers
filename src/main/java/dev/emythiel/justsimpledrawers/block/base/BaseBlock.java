@@ -15,6 +15,10 @@ public abstract class BaseBlock extends Block {
             .setValue(HorizontalDirectionalBlock.FACING, Direction.NORTH));
     }
 
+    public boolean isFrontFace(BlockState state, Direction clickedFace) {
+        return state.getValue(HorizontalDirectionalBlock.FACING) == clickedFace;
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HorizontalDirectionalBlock.FACING);
