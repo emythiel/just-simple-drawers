@@ -27,7 +27,7 @@ public class ModBlocks {
         () -> new DrawerBlock(getDrawerProperties(), 4));
 
     // Compacting Drawer Block
-    public static final DeferredBlock<Block> COMPACTING_DRAWER = registerBlock("compacting_drawer", () -> new CompactingBlock(getDrawerProperties()));
+    public static final DeferredBlock<Block> COMPACTING_DRAWER = registerBlock("compacting_drawer", () -> new CompactingBlock(getDrawerProperties(), 3));
 
     // Drawer Controller Block
     public static final DeferredBlock<Block> CONTROLLER = registerBlock("controller", () -> new ControllerBlock(getDrawerProperties()));

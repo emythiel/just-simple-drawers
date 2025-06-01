@@ -11,7 +11,7 @@ public class DrawerBlock extends StorageBlock<DrawerBlockEntity> {
     public final int slots;
 
     public DrawerBlock(Properties properties, int slots) {
-        super(properties);
+        super(properties, slots);
         this.slots = slots;
     }
 

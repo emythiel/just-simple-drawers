@@ -7,8 +7,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class CompactingBlock extends StorageBlock<CompactingBlockEntity> {
-    public CompactingBlock(Properties properties) {
-        super(properties);
+    public final int slots;
+
+    public CompactingBlock(Properties properties, int slots) {
+        super(properties, slots);
+        this.slots = slots;
     }
 
     @Override
