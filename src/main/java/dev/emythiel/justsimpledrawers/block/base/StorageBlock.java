@@ -39,24 +39,26 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
         Vec2 uv = RaycastUtil.calculateFrontFaceLocation(pos, hitResult.getLocation(), state.getValue(HorizontalDirectionalBlock.FACING), hitResult.getDirection());
         if (uv == null) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
+        // Debugging where on drawer player hit for now
         int slot = getSlotIndex(this.slots, uv);
         if (slot == -1) {
             player.sendSystemMessage(Component.literal("No drawer slot here!"));
             return ItemInteractionResult.SUCCESS;
         }
-        player.sendSystemMessage(Component.literal("You are pointing at drawer slot: " + slot));
+        player.sendSystemMessage(Component.literal("Drawer slot: " + slot));
         return ItemInteractionResult.SUCCESS;
 
 
     }
 
+    // Get the slot index
     protected int getSlotIndex(int slots, Vec2 uv) {
         float min = 1.0F / 16.0F;
         float max = 15.0F / 16.0F;
         if (uv.x < min || uv.x > max || uv.y < min || uv.y > max) {
             return -1; // Hit frame, not drawer
         }
-        // Map to [1,5] grid
+        // Map to [1,14] grid
         float px = uv.x * 15.0f;
         float py = uv.y * 15.0f;
 
