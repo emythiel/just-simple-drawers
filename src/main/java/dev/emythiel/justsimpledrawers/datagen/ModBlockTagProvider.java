@@ -21,15 +21,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(ModBlocks.SINGLE_DRAWER.get())
             .add(ModBlocks.DOUBLE_DRAWER.get())
-            .add(ModBlocks.QUAD_DRAWER.get());
-            //.add(ModBlocks.COMPACTING_DRAWER.get())
-            //.add(ModBlocks.CONTROLLER.get());
+            .add(ModBlocks.QUAD_DRAWER.get())
+            .add(ModBlocks.COMPACTING_DRAWER.get())
+            .add(ModBlocks.CONTROLLER.get());
 
         tag(BlockTags.NEEDS_STONE_TOOL)
             .add(ModBlocks.SINGLE_DRAWER.get())
             .add(ModBlocks.DOUBLE_DRAWER.get())
-            .add(ModBlocks.QUAD_DRAWER.get());
-            //.add(ModBlocks.COMPACTING_DRAWER.get())
-            //.add(ModBlocks.CONTROLLER.get());
+            .add(ModBlocks.QUAD_DRAWER.get())
+            .add(ModBlocks.COMPACTING_DRAWER.get())
+            .add(ModBlocks.CONTROLLER.get());
     }
 }

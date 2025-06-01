@@ -22,8 +22,8 @@ public class ModCreativeModTabs {
                 output.accept(ModBlocks.SINGLE_DRAWER.get());
                 output.accept(ModBlocks.DOUBLE_DRAWER.get());
                 output.accept(ModBlocks.QUAD_DRAWER.get());
-                //output.accept(ModBlocks.COMPACTING_DRAWER.get());
-                //output.accept(ModBlocks.CONTROLLER.get());
+                output.accept(ModBlocks.COMPACTING_DRAWER.get());
+                output.accept(ModBlocks.CONTROLLER.get());
 
                 output.accept(ModItems.UPGRADE_BASE.get());
                 output.accept(ModItems.UPGRADE_T1.get());

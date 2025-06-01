@@ -1,6 +1,5 @@
 package dev.emythiel.justsimpledrawers.block.entity;
 
-import dev.emythiel.justsimpledrawers.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -9,6 +8,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
@@ -34,8 +34,8 @@ public abstract class StorageBlockEntity extends BlockEntity {
     private boolean hideDisplay;
     private boolean hideAmount;
 
-    public StorageBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.DRAWER_BLOCK_ENTITY.get(), pos, blockState);
+    public StorageBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+        super(type, pos, blockState);
     }
 
     @Override

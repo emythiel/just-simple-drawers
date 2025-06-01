@@ -47,7 +47,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             .define('B', Items.BARREL)
             .unlockedBy("has_barrel", has(Items.BARREL)).save(recipeOutput);
 
-        /*// Compacting Drawer Recipe
+        // Compacting Drawer Recipe
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COMPACTING_DRAWER.get())
             .pattern("GPG")
             .pattern("GBG")
@@ -65,7 +65,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             .define('G', Items.GOLD_INGOT)
             .define('R', Items.REDSTONE_TORCH)
             .define('B', Items.BARREL)
-            .unlockedBy("has_barrel", has(Items.BARREL)).save(recipeOutput);*/
+            .unlockedBy("has_barrel", has(Items.BARREL)).save(recipeOutput);
     }
 }
 /*

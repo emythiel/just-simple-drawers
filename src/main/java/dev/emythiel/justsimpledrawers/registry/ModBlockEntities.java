@@ -1,6 +1,7 @@
 package dev.emythiel.justsimpledrawers.registry;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
+import dev.emythiel.justsimpledrawers.block.entity.CompactingBlockEntity;
 import dev.emythiel.justsimpledrawers.block.entity.DrawerBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -27,14 +28,16 @@ public class ModBlockEntities {
         )
     );
 
-    /*public static final Supplier<BlockEntityType<CompactingBlockEntity>> COMPACTING_BLOCK_ENTITY = BLOCK_ENTITIES.register(
+    public static final Supplier<BlockEntityType<CompactingBlockEntity>> COMPACTING_BLOCK_ENTITY = BLOCK_ENTITIES.register(
         "compacting_block_entity",
         () -> new BlockEntityType<>(
             CompactingBlockEntity::new,
-            ModBlocks.COMPACTING_DRAWER.get(),
+            Set.of(
+                ModBlocks.COMPACTING_DRAWER.get()
+            ),
             null
         )
-    );*/
+    );
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

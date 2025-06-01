@@ -15,10 +15,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class DrawerRenderer implements BlockEntityRenderer<StorageBlockEntity> {
     public DrawerRenderer(BlockEntityRendererProvider.Context context) {}
@@ -31,20 +29,20 @@ public class DrawerRenderer implements BlockEntityRenderer<StorageBlockEntity> {
 
         if (stack.isEmpty()) return; // Exit if there's nothing stored
 
-        // Figure out the blocks front
+        // Figure out the blocks front face
         BlockState state = blockEntity.getBlockState();
         Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
 
-        // Get the light level
+        // Get the light level based on blocks front
         Level level = blockEntity.getLevel();
         BlockPos facePos = blockEntity.getBlockPos().relative(facing);
         int light = level != null ? LevelRenderer.getLightColor(level, facePos) : LightTexture.pack(15, 15);
 
-        // Initial position for the renderer is in the center
+        // Set initial position for the renderer to center of block
         poseStack.pushPose();
         poseStack.translate(0.50, 0.50, 0.5);
 
-        // Rotate the item to the proper facing
+        // Rotate the renderer based on blocks facing
         float yRot = switch (facing) {
             case NORTH -> 180;
             case SOUTH -> 0;
