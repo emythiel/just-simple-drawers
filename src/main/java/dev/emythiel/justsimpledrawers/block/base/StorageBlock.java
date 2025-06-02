@@ -1,25 +1,19 @@
 package dev.emythiel.justsimpledrawers.block.base;
 
-import dev.emythiel.justsimpledrawers.block.entity.DrawerBlockEntity;
 import dev.emythiel.justsimpledrawers.block.entity.StorageBlockEntity;
 import dev.emythiel.justsimpledrawers.util.RaycastUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec2;
-import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.items.ItemStackHandler;
 
 public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlock implements EntityBlock {
     public final int slots;
@@ -33,7 +27,7 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.isClientSide()) return ItemInteractionResult.SUCCESS;
+        if (level.isClientSide) return ItemInteractionResult.SUCCESS;
 
         // Raycast to get which exact spot on the front face was hit
         Vec2 uv = RaycastUtil.calculateFrontFaceLocation(pos, hitResult.getLocation(), state.getValue(HorizontalDirectionalBlock.FACING), hitResult.getDirection());
@@ -47,8 +41,6 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
         }
         player.sendSystemMessage(Component.literal("Drawer slot: " + slot));
         return ItemInteractionResult.SUCCESS;
-
-
     }
 
     // Get the slot index
@@ -88,8 +80,4 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
             default -> -1;
         };
     }
-
-
-
-
 }
