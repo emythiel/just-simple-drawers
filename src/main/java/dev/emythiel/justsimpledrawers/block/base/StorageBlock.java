@@ -2,6 +2,7 @@ package dev.emythiel.justsimpledrawers.block.base;
 
 import dev.emythiel.justsimpledrawers.block.entity.StorageBlockEntity;
 import dev.emythiel.justsimpledrawers.storage.DrawerSlot;
+import dev.emythiel.justsimpledrawers.util.DrawerInteractionStatusManager;
 import dev.emythiel.justsimpledrawers.util.RaycastUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -58,6 +59,44 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
 
         DrawerSlot slot = storageBE.slots[slotIndex];
         ItemStack heldStack = player.getItemInHand(hand);
+
+        // Check if double-right-click
+        boolean isDoubleClick = DrawerInteractionStatusManager.isDoubleClick(player, pos, slotIndex);
+
+        if (isDoubleClick) {
+            // Bulk insertion for double-click
+            if (slot.getStoredItem().isEmpty() && heldStack.isEmpty()) {
+                // Nothing to insert
+                return ItemInteractionResult.SUCCESS;
+            }
+
+            int totalInserted = 0;
+            ItemStack template = slot.getStoredItem().isEmpty() ? heldStack : slot.getStoredItem();
+
+            // Set stored item if slot is empty
+            if (slot.getStoredItem().isEmpty()) {
+                slot.setStoredItem(template.copyWithCount(1));
+            }
+
+            // Insert from players inventory
+            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                ItemStack stackInSlot = player.getInventory().getItem(i);
+
+                if (!stackInSlot.isEmpty() && slot.canAccept(stackInSlot) && ItemStack.isSameItemSameComponents(template, stackInSlot)) {
+                    int inserted = slot.insertItem(stackInSlot);
+                    stackInSlot.shrink(inserted);
+                    totalInserted += inserted;
+
+                    if (slot.getRemainingSpace() == 0) break;
+                }
+            }
+
+            if (totalInserted > 0) {
+                storageBE.setChanged();
+                level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
+            }
+            return ItemInteractionResult.SUCCESS;
+        }
 
         // Handle insertion
         if (!heldStack.isEmpty() && slot.canAccept(heldStack)) {
