@@ -2,7 +2,7 @@ package dev.emythiel.justsimpledrawers;
 
 import dev.emythiel.justsimpledrawers.registry.ModBlockEntities;
 import dev.emythiel.justsimpledrawers.registry.ModBlocks;
-import dev.emythiel.justsimpledrawers.registry.ModCreativeModTabs;
+import dev.emythiel.justsimpledrawers.registry.ModCreativeModeTabs;
 import dev.emythiel.justsimpledrawers.registry.ModItems;
 import org.slf4j.Logger;
 
@@ -41,7 +41,7 @@ public class JustSimpleDrawers {
         NeoForge.EVENT_BUS.register(this);
 
         // Register creative tab
-        ModCreativeModTabs.register(modEventBus);
+        ModCreativeModeTabs.register(modEventBus);
 
         // Register items and blocks
         ModItems.register(modEventBus);
