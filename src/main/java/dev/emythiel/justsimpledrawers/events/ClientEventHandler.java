@@ -17,5 +17,6 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void registerBlockEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.DRAWER_BLOCK_ENTITY.get(), DrawerRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.COMPACTING_BLOCK_ENTITY.get(), DrawerRenderer::new);
     }
 }

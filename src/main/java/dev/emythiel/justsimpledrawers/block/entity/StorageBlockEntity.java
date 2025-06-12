@@ -1,66 +1,49 @@
 package dev.emythiel.justsimpledrawers.block.entity;
 
+import dev.emythiel.justsimpledrawers.storage.DrawerSlot;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.items.ItemStackHandler;
 
 public abstract class StorageBlockEntity extends BlockEntity {
-    public final ItemStackHandler inventory = new ItemStackHandler(1) {
-        @Override
-        protected int getStackLimit(int slot, ItemStack stack) {
-            return 99;
+    public final DrawerSlot[] slots;
+    private final int slotCount;
+
+    public StorageBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int slotCount) {
+        super(type, pos, state);
+        this.slotCount = slotCount;
+        this.slots = new DrawerSlot[slotCount];
+        for (int i = 0; i < slotCount; i++) {
+            slots[i] = new DrawerSlot(slotCount);
         }
-
-        @Override
-        protected void onContentsChanged(int slot) {
-            setChanged();
-            if(!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
-            }
-        }
-    };
-
-    private int upgradeMultiplier;
-    private boolean lockMode;
-    private boolean voidMode;
-    private boolean hideDisplay;
-    private boolean hideAmount;
-
-    public StorageBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
-        super(type, pos, blockState);
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.put("inventory", inventory.serializeNBT(registries));
-        tag.putInt("upgradeMultiplier", this.upgradeMultiplier);
-        tag.putBoolean("lockMode", this.lockMode);
-        tag.putBoolean("voidMode", this.voidMode);
-        tag.putBoolean("hideDisplay", this.hideDisplay);
-        tag.putBoolean("hideAmount", this.hideAmount);
+        CompoundTag slotsTag = new CompoundTag();
+        for (int i = 0; i < slotCount; i++) {
+            slotsTag.put("slot_" + i, slots[i].save(registries));
+        }
+        tag.put("slots", slotsTag);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        this.inventory.deserializeNBT(registries, tag.getCompound("inventory"));
-        this.upgradeMultiplier = tag.getInt("upgradeMultiplier");
-        this.lockMode = tag.getBoolean("lockMode");
-        this.voidMode = tag.getBoolean("voidMode");
-        this.hideDisplay = tag.getBoolean("hideDisplay");
-        this.hideAmount = tag.getBoolean("hideAmount");
+        CompoundTag slotsTag = tag.getCompound("slots");
+        for (int i = 0; i < slotCount; i++) {
+            if (slotsTag.contains("slot_" + i)) {
+                slots[i].load(slotsTag.getCompound("slot_" + i), registries);
+            }
+        }
     }
-
-
 
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {

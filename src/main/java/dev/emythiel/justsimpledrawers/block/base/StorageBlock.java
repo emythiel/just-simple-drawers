@@ -1,6 +1,7 @@
 package dev.emythiel.justsimpledrawers.block.base;
 
 import dev.emythiel.justsimpledrawers.block.entity.StorageBlockEntity;
+import dev.emythiel.justsimpledrawers.storage.DrawerSlot;
 import dev.emythiel.justsimpledrawers.util.RaycastUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -9,8 +10,10 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec2;
@@ -23,24 +26,53 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
         this.slots = slots;
     }
 
-    // Insert items
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.isClientSide) return ItemInteractionResult.SUCCESS;
 
-        // Raycast to get which exact spot on the front face was hit
-        Vec2 uv = RaycastUtil.calculateFrontFaceLocation(pos, hitResult.getLocation(), state.getValue(HorizontalDirectionalBlock.FACING), hitResult.getDirection());
+        Vec2 uv = RaycastUtil.calculateFrontFaceLocation(pos, hitResult.getLocation(),
+            state.getValue(HorizontalDirectionalBlock.FACING), hitResult.getDirection());
         if (uv == null) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        // Debugging where on drawer player hit for now
-        int slot = getSlotIndex(this.slots, uv);
-        if (slot == -1) {
-            player.sendSystemMessage(Component.literal("No drawer slot here!"));
+        int slotIndex = getSlotIndex(this.slots, uv);
+        if (slotIndex == -1) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
+        BlockEntity be = level.getBlockEntity(pos);
+        if (!(be instanceof StorageBlockEntity storageBE)) {
+            return ItemInteractionResult.FAIL;
+        }
+
+        if (slotIndex >= storageBE.slots.length) {
+            return ItemInteractionResult.FAIL;
+        }
+
+        DrawerSlot slot = storageBE.slots[slotIndex];
+        ItemStack heldStack = player.getItemInHand(hand);
+
+        // Handle insertion
+        if (heldStack.isEmpty()) {
             return ItemInteractionResult.SUCCESS;
         }
-        player.sendSystemMessage(Component.literal("Drawer slot: " + slot));
-        return ItemInteractionResult.SUCCESS;
+
+        // Check if slot can accept the item
+        if (slot.canAccept(heldStack)) {
+            // If slot is empty, set the stored item type
+            if (slot.getStoredItem().isEmpty()) {
+                slot.setStoredItem(heldStack.copyWithCount(1));
+            }
+
+            // Insert items
+            int inserted = slot.insertItem(heldStack);
+            if (inserted > 0) {
+                heldStack.shrink(inserted);
+                storageBE.setChanged();
+                level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     // Get the slot index
@@ -80,4 +112,24 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
             default -> -1;
         };
     }
+
+    /*// Insert items
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                                              Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (level.isClientSide) return ItemInteractionResult.SUCCESS;
+
+        // Raycast to get which exact spot on the front face was hit
+        Vec2 uv = RaycastUtil.calculateFrontFaceLocation(pos, hitResult.getLocation(), state.getValue(HorizontalDirectionalBlock.FACING), hitResult.getDirection());
+        if (uv == null) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
+        // Debugging where on drawer player hit for now
+        int slot = getSlotIndex(this.slots, uv);
+        if (slot == -1) {
+            player.sendSystemMessage(Component.literal("No drawer slot here!"));
+            return ItemInteractionResult.SUCCESS;
+        }
+        player.sendSystemMessage(Component.literal("Drawer slot: " + slot));
+        return ItemInteractionResult.SUCCESS;
+    }*/
 }

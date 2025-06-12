@@ -1,3 +1,4 @@
+/*
 package dev.emythiel.justsimpledrawers.events;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
@@ -52,3 +53,4 @@ public class EventHandler {
         }
     }
 }
+*/
