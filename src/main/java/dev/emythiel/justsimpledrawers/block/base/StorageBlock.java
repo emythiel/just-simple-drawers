@@ -5,7 +5,6 @@ import dev.emythiel.justsimpledrawers.storage.DrawerSlot;
 import dev.emythiel.justsimpledrawers.util.DrawerInteractionStatusManager;
 import dev.emythiel.justsimpledrawers.util.RaycastUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -155,24 +154,4 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
             default -> -1;
         };
     }
-
-    /*// Insert items
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-                                              Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.isClientSide) return ItemInteractionResult.SUCCESS;
-
-        // Raycast to get which exact spot on the front face was hit
-        Vec2 uv = RaycastUtil.calculateFrontFaceLocation(pos, hitResult.getLocation(), state.getValue(HorizontalDirectionalBlock.FACING), hitResult.getDirection());
-        if (uv == null) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
-        // Debugging where on drawer player hit for now
-        int slot = getSlotIndex(this.slots, uv);
-        if (slot == -1) {
-            player.sendSystemMessage(Component.literal("No drawer slot here!"));
-            return ItemInteractionResult.SUCCESS;
-        }
-        player.sendSystemMessage(Component.literal("Drawer slot: " + slot));
-        return ItemInteractionResult.SUCCESS;
-    }*/
 }
