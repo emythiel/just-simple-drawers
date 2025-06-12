@@ -29,34 +29,38 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.isClientSide) return ItemInteractionResult.SUCCESS;
-
+        // Check if front face is hit
         Vec2 uv = RaycastUtil.calculateFrontFaceLocation(pos, hitResult.getLocation(),
             state.getValue(HorizontalDirectionalBlock.FACING), hitResult.getDirection());
-        if (uv == null) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        int slotIndex = getSlotIndex(this.slots, uv);
-        if (slotIndex == -1) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
-        BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof StorageBlockEntity storageBE)) {
-            return ItemInteractionResult.FAIL;
+        // Client-side handling
+        if (level.isClientSide) {
+            return uv != null ? ItemInteractionResult.SUCCESS : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
+        // Rest is server-side
+        if (uv == null) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
+        // Check if frame is hit
+        int slotIndex = getSlotIndex(this.slots, uv);
+        if (slotIndex == -1) return ItemInteractionResult.SUCCESS;
+
+        // Not correct block entity
+        BlockEntity be = level.getBlockEntity(pos);
+        if (!(be instanceof StorageBlockEntity storageBE)) {
+            return ItemInteractionResult.SUCCESS;
+        }
+
+        // Check if valid slot
         if (slotIndex >= storageBE.slots.length) {
-            return ItemInteractionResult.FAIL;
+            return ItemInteractionResult.SUCCESS;
         }
 
         DrawerSlot slot = storageBE.slots[slotIndex];
         ItemStack heldStack = player.getItemInHand(hand);
 
         // Handle insertion
-        if (heldStack.isEmpty()) {
-            return ItemInteractionResult.SUCCESS;
-        }
-
-        // Check if slot can accept the item
-        if (slot.canAccept(heldStack)) {
+        if (!heldStack.isEmpty() && slot.canAccept(heldStack)) {
             // If slot is empty, set the stored item type
             if (slot.getStoredItem().isEmpty()) {
                 slot.setStoredItem(heldStack.copyWithCount(1));
@@ -72,7 +76,7 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
             }
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return ItemInteractionResult.SUCCESS;
     }
 
     // Get the slot index
