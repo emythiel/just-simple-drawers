@@ -2,6 +2,7 @@ package dev.emythiel.justsimpledrawers.storage;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public class DrawerSlot {
@@ -12,13 +13,18 @@ public class DrawerSlot {
     private boolean voidMode = false;
     private boolean hideDisplay = false;
     private boolean hideText = false;
-
-    // Capacity calculation (base + upgrades)
     private final int totalSlots; // Slot count reference
+
+    // Base multiplier for capacity
+    private static final int BASE_MULTIPLIER = 32;
+
+    // Capacity calculation
     public int getCapacity() {
-        int baseCapacity = 2048;
-        /* TODO: Add upgrade capacity logic */
-        return baseCapacity / totalSlots;
+        if (storedItem.isEmpty()) {
+            // return a default capacity if no item stored
+            return BASE_MULTIPLIER * 64 / totalSlots;
+        }
+        return BASE_MULTIPLIER * storedItem.getMaxStackSize() / totalSlots;
     }
 
     public DrawerSlot(int totalSlots) {
@@ -93,6 +99,39 @@ public class DrawerSlot {
     }
     public void toggleHideAmount() {
         this.hideText = !hideText;
+    }
+
+    // Withdraw items
+    public ItemStack withdrawItem(Player player, boolean isSneaking) {
+        if (storedItem.isEmpty() || count <= 0) {
+            return ItemStack.EMPTY;
+        }
+
+        // Determine withdraw amount
+        int amount;
+        if (isSneaking) {
+            amount = storedItem.getMaxStackSize();
+        } else {
+            amount = 1;
+        }
+
+        // Adjust amount to available count
+        int amountToWithdraw = Math.min(amount, count);
+        ItemStack result = storedItem.copyWithCount(amountToWithdraw);
+
+        // Check if player can receive the items
+        if (player.getInventory().getFreeSlot() == -1 && !player.getInventory().add(result.copy())) {
+            return ItemStack.EMPTY; // No space in inventory
+        }
+
+        // Withdraw items
+        count -= amountToWithdraw;
+        if (count <= 0) {
+            storedItem = ItemStack.EMPTY;
+            count = 0;
+        }
+
+        return result;
     }
 
     // NBT Serialization

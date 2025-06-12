@@ -5,6 +5,7 @@ import dev.emythiel.justsimpledrawers.storage.DrawerSlot;
 import dev.emythiel.justsimpledrawers.util.DrawerInteractionStatusManager;
 import dev.emythiel.justsimpledrawers.util.RaycastUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -118,7 +119,7 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
     }
 
     // Get the slot index
-    protected int getSlotIndex(int slots, Vec2 uv) {
+    public int getSlotIndex(int slots, Vec2 uv) {
         float min = 1.0F / 16.0F;
         float max = 15.0F / 16.0F;
         if (uv.x < min || uv.x > max || uv.y < min || uv.y > max) {
@@ -153,5 +154,9 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
             }
             default -> -1;
         };
+    }
+
+    public boolean isFrontFace(BlockState state, Direction clickedFace) {
+        return state.getValue(HorizontalDirectionalBlock.FACING) == clickedFace;
     }
 }
