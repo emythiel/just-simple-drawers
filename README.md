@@ -2,4 +2,4 @@
 Just Simple Drawers
 =======
 
-A Minecraft mod adding simple storage drawers
+WIP, please don't judge my scuf attempt at Java
