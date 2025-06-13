@@ -102,29 +102,17 @@ public class DrawerSlot {
     }
 
     // Withdraw items
-    public ItemStack withdrawItem(Player player, boolean isSneaking) {
+    public ItemStack withdrawItem(boolean isSneaking) {
         if (storedItem.isEmpty() || count <= 0) {
             return ItemStack.EMPTY;
         }
 
         // Determine withdraw amount
-        int amount;
-        if (isSneaking) {
-            amount = storedItem.getMaxStackSize();
-        } else {
-            amount = 1;
-        }
-
-        // Adjust amount to available count
+        int amount = isSneaking ? storedItem.getMaxStackSize() : 1;
         int amountToWithdraw = Math.min(amount, count);
         ItemStack result = storedItem.copyWithCount(amountToWithdraw);
 
-        // Check if player can receive the items
-        if (player.getInventory().getFreeSlot() == -1 && !player.getInventory().add(result.copy())) {
-            return ItemStack.EMPTY; // No space in inventory
-        }
-
-        // Withdraw items
+        // Update drawer state
         count -= amountToWithdraw;
         if (count <= 0) {
             storedItem = ItemStack.EMPTY;
