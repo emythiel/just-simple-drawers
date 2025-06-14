@@ -6,10 +6,11 @@
   "block.justsimpledrawers.controller": "Drawer Vault Controller",
 
   "item.justsimpledrawers.upgrade_base": "Drawer Vault Upgrade Base",
-  "item.justsimpledrawers.upgrade_t1": "Drawer Vault Upgrade Tier 1",
-  "item.justsimpledrawers.upgrade_t2": "Drawer Vault Upgrade Tier 2",
-  "item.justsimpledrawers.upgrade_t3": "Drawer Vault Upgrade Tier 3",
-  "item.justsimpledrawers.upgrade_t4": "Drawer Vault Upgrade Tier 4",
+  "item.justsimpledrawers.capacity_upgrade_t1": "Capacity Upgrade Tier 1",
+  "item.justsimpledrawers.capacity_upgrade_t2": "Capacity Upgrade Tier 2",
+  "item.justsimpledrawers.capacity_upgrade_t3": "Capacity Upgrade Tier 3",
+  "item.justsimpledrawers.capacity_upgrade_t4": "Capacity Upgrade Tier 4",
+  "item.justsimpledrawers.capacity_upgrade_t5": "Capacity Upgrade Tier 5",
 
   "creativetab.justsimpledrawers": "Just Simple Drawers"
 }

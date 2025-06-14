@@ -14,9 +14,10 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.UPGRADE_BASE.get());
-        basicItem(ModItems.UPGRADE_T1.get());
-        basicItem(ModItems.UPGRADE_T2.get());
-        basicItem(ModItems.UPGRADE_T3.get());
-        basicItem(ModItems.UPGRADE_T4.get());
+        basicItem(ModItems.CAPACITY_UPGRADE_T1.get());
+        basicItem(ModItems.CAPACITY_UPGRADE_T2.get());
+        basicItem(ModItems.CAPACITY_UPGRADE_T3.get());
+        basicItem(ModItems.CAPACITY_UPGRADE_T4.get());
+        basicItem(ModItems.CAPACITY_UPGRADE_T5.get());
     }
 }

@@ -26,10 +26,11 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.CONTROLLER.get());
 
                 output.accept(ModItems.UPGRADE_BASE.get());
-                output.accept(ModItems.UPGRADE_T1.get());
-                output.accept(ModItems.UPGRADE_T2.get());
-                output.accept(ModItems.UPGRADE_T3.get());
-                output.accept(ModItems.UPGRADE_T4.get());
+                output.accept(ModItems.CAPACITY_UPGRADE_T1.get());
+                output.accept(ModItems.CAPACITY_UPGRADE_T2.get());
+                output.accept(ModItems.CAPACITY_UPGRADE_T3.get());
+                output.accept(ModItems.CAPACITY_UPGRADE_T4.get());
+                output.accept(ModItems.CAPACITY_UPGRADE_T5.get());
             })
             .build());
 
