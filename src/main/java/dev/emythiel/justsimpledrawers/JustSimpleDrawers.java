@@ -7,6 +7,10 @@ import dev.emythiel.justsimpledrawers.registry.ModBlocks;
 import dev.emythiel.justsimpledrawers.registry.ModCreativeModeTabs;
 import dev.emythiel.justsimpledrawers.registry.ModItems;
 import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import org.apache.logging.log4j.core.jmx.Server;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -35,6 +39,13 @@ public class JustSimpleDrawers {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public JustSimpleDrawers(IEventBus modEventBus, ModContainer modContainer) {
+        // Register mod configuration
+        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
+        modEventBus.addListener(this::onConfigLoad);
+        // Create a configuration screen
+        modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -55,10 +66,14 @@ public class JustSimpleDrawers {
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+    }
 
-        // Register mod configuration
-        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
-        modContainer.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
+    private void onConfigLoad(ModConfigEvent event) {
+        if (event.getConfig().getSpec() == ClientConfig.SPEC) {
+            ClientConfig.load();
+        } else if (event.getConfig().getSpec() == ServerConfig.SPEC) {
+            ServerConfig.load();
+        }
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

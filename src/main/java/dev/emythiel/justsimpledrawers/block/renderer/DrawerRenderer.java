@@ -27,8 +27,8 @@ import net.minecraft.world.phys.Vec3;
 
 // 64, 32
 public class DrawerRenderer implements BlockEntityRenderer<StorageBlockEntity> {
-    private static final int ITEM_DISTANCE = ClientConfig.ITEM_VIEW_DISTANCE.get();
-    private static final int TEXT_DISTANCE = ClientConfig.TEXT_VIEW_DISTANCE.get();
+    private static final int ITEM_DISTANCE = ClientConfig.itemViewDistance;
+    private static final int TEXT_DISTANCE = ClientConfig.textViewDistance;
 
     public DrawerRenderer(BlockEntityRendererProvider.Context context) {}
 

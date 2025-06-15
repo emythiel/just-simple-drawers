@@ -16,7 +16,7 @@ public class DrawerSlot {
     private final int totalSlots; // Slot count reference
 
     // Get base multiplier capacity from config
-    private static final int BASE_MULTIPLIER = ServerConfig.BASE_CAPACITY.get();
+    private static final int BASE_MULTIPLIER = ServerConfig.baseCapacity;
 
     // Capacity calculation
     public int getCapacity() {

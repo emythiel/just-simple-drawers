@@ -12,5 +12,19 @@
   "item.justsimpledrawers.capacity_upgrade_t4": "Capacity Upgrade Tier 4",
   "item.justsimpledrawers.capacity_upgrade_t5": "Capacity Upgrade Tier 5",
 
-  "creativetab.justsimpledrawers": "Just Simple Drawers"
+  "creativetab.justsimpledrawers": "Just Simple Drawers",
+
+  "justsimpledrawers.configuration.render-settings": "Render Settings",
+  "justsimpledrawers.configuration.itemViewDistance": "Item View Distance",
+  "justsimpledrawers.configuration.textViewDistance": "Text View Distance",
+  "justsimpledrawers.configuration.decimalSeparator": "Decimal Separator",
+  "justsimpledrawers.configuration.capacity": "Capacity Settings",
+  "justsimpledrawers.configuration.baseCapacity": "Base Capacity",
+  "justsimpledrawers.configuration.capacityUpgradeT1Mult": "Tier 1 Multiplier",
+  "justsimpledrawers.configuration.capacityUpgradeT2Mult": "Tier 2 Multiplier",
+  "justsimpledrawers.configuration.capacityUpgradeT3Mult": "Tier 3 Multiplier",
+  "justsimpledrawers.configuration.capacityUpgradeT4Mult": "Tier 4 Multiplier",
+  "justsimpledrawers.configuration.capacityUpgradeT5Mult": "Tier 5 Multiplier",
+  "justsimpledrawers.configuration.blacklisted-items": "Blacklisted Items",
+  "justsimpledrawers.configuration.blacklistedItems": "Blacklisted Items"
 }
