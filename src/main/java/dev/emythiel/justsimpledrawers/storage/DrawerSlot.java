@@ -1,8 +1,8 @@
 package dev.emythiel.justsimpledrawers.storage;
 
+import dev.emythiel.justsimpledrawers.config.ServerConfig;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public class DrawerSlot {
@@ -15,8 +15,8 @@ public class DrawerSlot {
     private boolean hideText = false;
     private final int totalSlots; // Slot count reference
 
-    // Base multiplier for capacity
-    private static final int BASE_MULTIPLIER = 32;
+    // Get base multiplier capacity from config
+    private static final int BASE_MULTIPLIER = ServerConfig.BASE_CAPACITY.get();
 
     // Capacity calculation
     public int getCapacity() {

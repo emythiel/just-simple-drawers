@@ -1,9 +1,12 @@
 package dev.emythiel.justsimpledrawers;
 
+import dev.emythiel.justsimpledrawers.config.ClientConfig;
+import dev.emythiel.justsimpledrawers.config.ServerConfig;
 import dev.emythiel.justsimpledrawers.registry.ModBlockEntities;
 import dev.emythiel.justsimpledrawers.registry.ModBlocks;
 import dev.emythiel.justsimpledrawers.registry.ModCreativeModeTabs;
 import dev.emythiel.justsimpledrawers.registry.ModItems;
+import net.neoforged.fml.event.config.ModConfigEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -53,8 +56,9 @@ public class JustSimpleDrawers {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        // Register mod configuration
+        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

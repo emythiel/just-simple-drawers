@@ -3,6 +3,7 @@ package dev.emythiel.justsimpledrawers.block.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import dev.emythiel.justsimpledrawers.block.entity.StorageBlockEntity;
+import dev.emythiel.justsimpledrawers.config.ClientConfig;
 import dev.emythiel.justsimpledrawers.storage.DrawerSlot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -26,6 +27,9 @@ import net.minecraft.world.phys.Vec3;
 
 // 64, 32
 public class DrawerRenderer implements BlockEntityRenderer<StorageBlockEntity> {
+    private static final int ITEM_DISTANCE = ClientConfig.ITEM_VIEW_DISTANCE.get();
+    private static final int TEXT_DISTANCE = ClientConfig.TEXT_VIEW_DISTANCE.get();
+
     public DrawerRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
@@ -45,7 +49,7 @@ public class DrawerRenderer implements BlockEntityRenderer<StorageBlockEntity> {
         double distanceSq = playerPos.distanceToSqr(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5);
 
         // Check if we should render item
-        if (distanceSq > 24*24) {
+        if (distanceSq > ITEM_DISTANCE*ITEM_DISTANCE) {
             return;
         }
 
@@ -85,7 +89,7 @@ public class DrawerRenderer implements BlockEntityRenderer<StorageBlockEntity> {
             itemRenderer.renderStatic(stack, ItemDisplayContext.GUI, light, packedOverlay, poseStack, bufferSource, null, 0);
 
             // Render the count if wihtin range, not zero and not hidden
-            if (distanceSq <= 16*16 && !slot.getHideText() && slot.getItemCount() > 0) {
+            if (distanceSq <= TEXT_DISTANCE*TEXT_DISTANCE && !slot.getHideText() && slot.getItemCount() > 0) {
                 renderText(poseStack, bufferSource, font, slot.getItemCount(), light);
             }
 
