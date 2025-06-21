@@ -3,6 +3,7 @@ package dev.emythiel.justsimpledrawers.storage;
 import dev.emythiel.justsimpledrawers.config.ServerConfig;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class DrawerSlot {
@@ -13,18 +14,32 @@ public class DrawerSlot {
     private boolean voidMode = false;
     private boolean hideDisplay = false;
     private boolean hideText = false;
-    private final int totalSlots; // Slot count reference
+    private final int totalSlots;
 
     // Get base multiplier capacity from config
     private static final int BASE_MULTIPLIER = ServerConfig.baseCapacity;
 
     // Capacity calculation
     public int getCapacity() {
-        if (storedItem.isEmpty()) {
-            // return a default capacity if no item stored
-            return BASE_MULTIPLIER * 64 / totalSlots;
-        }
-        return BASE_MULTIPLIER * storedItem.getMaxStackSize() / totalSlots;
+        int baseMultiplier = ServerConfig.baseCapacity;
+        int stackSize = storedItem.isEmpty() ? 64 : storedItem.getMaxStackSize();
+        int upgradeMultiplier = getUpgradeMultiplier(upgrade);
+
+        return (baseMultiplier * stackSize * upgradeMultiplier) / totalSlots;
+    }
+
+    private int getUpgradeMultiplier(ItemStack item) {
+        if (item.isEmpty()) return 1;
+
+        Item upgradeItem = item.getItem();
+        return switch (upgradeItem.getDescriptionId()) {
+            case "item.justsimpledrawers.capacity_upgrade_t1" -> ServerConfig.capacityUpgradeT1Mult;
+            case "item.justsimpledrawers.capacity_upgrade_t2" -> ServerConfig.capacityUpgradeT2Mult;
+            case "item.justsimpledrawers.capacity_upgrade_t3" -> ServerConfig.capacityUpgradeT3Mult;
+            case "item.justsimpledrawers.capacity_upgrade_t4" -> ServerConfig.capacityUpgradeT4Mult;
+            case "item.justsimpledrawers.capacity_upgrade_t5" -> ServerConfig.capacityUpgradeT5Mult;
+            default -> 1;
+        };
     }
 
     public DrawerSlot(int totalSlots) {

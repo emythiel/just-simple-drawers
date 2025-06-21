@@ -31,6 +31,11 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.CAPACITY_UPGRADE_T3.get());
                 output.accept(ModItems.CAPACITY_UPGRADE_T4.get());
                 output.accept(ModItems.CAPACITY_UPGRADE_T5.get());
+                output.accept(ModItems.RANGE_UPGRADE_T1.get());
+                output.accept(ModItems.RANGE_UPGRADE_T2.get());
+                output.accept(ModItems.RANGE_UPGRADE_T3.get());
+                output.accept(ModItems.RANGE_UPGRADE_T4.get());
+                output.accept(ModItems.RANGE_UPGRADE_T5.get());
             })
             .build());
 
