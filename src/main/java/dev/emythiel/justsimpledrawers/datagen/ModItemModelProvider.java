@@ -19,5 +19,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.CAPACITY_UPGRADE_T3.get());
         basicItem(ModItems.CAPACITY_UPGRADE_T4.get());
         basicItem(ModItems.CAPACITY_UPGRADE_T5.get());
+        basicItem(ModItems.RANGE_UPGRADE_T1.get());
+        basicItem(ModItems.RANGE_UPGRADE_T2.get());
+        basicItem(ModItems.RANGE_UPGRADE_T3.get());
+        basicItem(ModItems.RANGE_UPGRADE_T4.get());
+        basicItem(ModItems.RANGE_UPGRADE_T5.get());
     }
 }

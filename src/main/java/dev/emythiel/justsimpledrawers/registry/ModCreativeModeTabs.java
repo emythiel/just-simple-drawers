@@ -19,18 +19,25 @@ public class ModCreativeModeTabs {
             .icon(() -> new ItemStack(ModBlocks.SINGLE_DRAWER.get()))
             .title(Component.translatable("creativetab.justsimpledrawers"))
             .displayItems((params, output) -> {
+                // BLOCKS
                 output.accept(ModBlocks.SINGLE_DRAWER.get());
                 output.accept(ModBlocks.DOUBLE_DRAWER.get());
                 output.accept(ModBlocks.QUAD_DRAWER.get());
                 output.accept(ModBlocks.COMPACTING_DRAWER.get());
                 output.accept(ModBlocks.CONTROLLER.get());
 
+                // UPGRADE ITEMS
                 output.accept(ModItems.UPGRADE_BASE.get());
                 output.accept(ModItems.CAPACITY_UPGRADE_T1.get());
                 output.accept(ModItems.CAPACITY_UPGRADE_T2.get());
                 output.accept(ModItems.CAPACITY_UPGRADE_T3.get());
                 output.accept(ModItems.CAPACITY_UPGRADE_T4.get());
                 output.accept(ModItems.CAPACITY_UPGRADE_T5.get());
+                output.accept(ModItems.RANGE_UPGRADE_T1.get());
+                output.accept(ModItems.RANGE_UPGRADE_T2.get());
+                output.accept(ModItems.RANGE_UPGRADE_T3.get());
+                output.accept(ModItems.RANGE_UPGRADE_T4.get());
+                output.accept(ModItems.RANGE_UPGRADE_T5.get());
             })
             .build());
 
