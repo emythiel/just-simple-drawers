@@ -4,6 +4,7 @@
     "justsimpledrawers:double_drawer",
     "justsimpledrawers:quad_drawer",
     "justsimpledrawers:compacting_drawer",
-    "justsimpledrawers:controller"
+    "justsimpledrawers:controller",
+    "justsimpledrawers:connector"
   ]
 }

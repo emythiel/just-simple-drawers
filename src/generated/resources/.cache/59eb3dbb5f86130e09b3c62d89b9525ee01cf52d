@@ -1,5 +1,6 @@
-// 1.21.1	2025-06-01T19:23:38.5446532	Loot Tables
+// 1.21.1	2025-06-24T00:35:32.1082106	Loot Tables
 2caef456fdb8bf61f1ed5c43ecbd40e96705a401 data/justsimpledrawers/loot_table/blocks/compacting_drawer.json
+bdd395b9fdb37319aa17b02bdaaa8c1d03e59103 data/justsimpledrawers/loot_table/blocks/connector.json
 a1c576479a338e1c967c6505bdd00fb3eba382c1 data/justsimpledrawers/loot_table/blocks/controller.json
 4f8f87d5b8021f654cc1ef87b49d6d7844cf5428 data/justsimpledrawers/loot_table/blocks/double_drawer.json
 1143b67671442fadbf5b3de41bfffc01fb92e5a1 data/justsimpledrawers/loot_table/blocks/quad_drawer.json

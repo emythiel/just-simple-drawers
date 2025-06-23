@@ -1,7 +1,12 @@
-// 1.21.1	2025-06-14T15:49:13.9642046	Item Models: justsimpledrawers
+// 1.21.1	2025-06-24T00:35:32.1072112	Item Models: justsimpledrawers
 755a63058b1e881a37668d9060a2015a2aa4eb1f assets/justsimpledrawers/models/item/capacity_upgrade_t1.json
 0c1ae881b6292b56349c905887de5db70d1e104e assets/justsimpledrawers/models/item/capacity_upgrade_t2.json
 7d20576adc80cf0a06b04506d799ae62fe2c4dcd assets/justsimpledrawers/models/item/capacity_upgrade_t3.json
 3066be67c3442a126c22d348719b5c7b424c3ef5 assets/justsimpledrawers/models/item/capacity_upgrade_t4.json
 7276054bce0f258019456b59147d75d61b7ba71e assets/justsimpledrawers/models/item/capacity_upgrade_t5.json
+da56b169446f3dbf5053c44c0afc5b3836248c74 assets/justsimpledrawers/models/item/range_upgrade_t1.json
+db6e41cd7d57b9044cb11a99857a14688ca01367 assets/justsimpledrawers/models/item/range_upgrade_t2.json
+1a8cab4525c1e76df4968ae6c4c2c6cefdd02a57 assets/justsimpledrawers/models/item/range_upgrade_t3.json
+62700a4093e756cb6d8e727a72b9597e5d531048 assets/justsimpledrawers/models/item/range_upgrade_t4.json
+306bd92a94ba77a21aef5fdb7f3079f64fab271f assets/justsimpledrawers/models/item/range_upgrade_t5.json
 f910b8cd51983b74c0d7afc2799c15131cd754b8 assets/justsimpledrawers/models/item/upgrade_base.json

@@ -2,6 +2,7 @@ package dev.emythiel.justsimpledrawers.registry;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
 import dev.emythiel.justsimpledrawers.block.CompactingBlock;
+import dev.emythiel.justsimpledrawers.block.ConnectorBlock;
 import dev.emythiel.justsimpledrawers.block.ControllerBlock;
 import dev.emythiel.justsimpledrawers.block.DrawerBlock;
 import net.minecraft.world.item.BlockItem;
@@ -31,6 +32,9 @@ public class ModBlocks {
 
     // Drawer Controller Block
     public static final DeferredBlock<Block> CONTROLLER = registerBlock("controller", () -> new ControllerBlock(getDrawerProperties()));
+
+    // Drawer Connector Block
+    public static final DeferredBlock<Block> CONNECTOR = registerBlock("connector", () -> new ConnectorBlock(getDrawerProperties()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

@@ -3,57 +3,33 @@ package dev.emythiel.justsimpledrawers.storage;
 import dev.emythiel.justsimpledrawers.config.ServerConfig;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class DrawerSlot {
     private ItemStack storedItem = ItemStack.EMPTY;
     private int count = 0;
-    private ItemStack upgrade = ItemStack.EMPTY;
     private boolean locked = false;
     private boolean voidMode = false;
-    private boolean hideDisplay = false;
-    private boolean hideText = false;
+    private boolean hideItem = false;
+    private boolean hideCount = false;
+
+    private int upgradeMultiplier = 1;
     private final int totalSlots;
-
-    // Get base multiplier capacity from config
-    private static final int BASE_MULTIPLIER = ServerConfig.baseCapacity;
-
-    // Capacity calculation
-    public int getCapacity() {
-        int baseMultiplier = ServerConfig.baseCapacity;
-        int stackSize = storedItem.isEmpty() ? 64 : storedItem.getMaxStackSize();
-        int upgradeMultiplier = getUpgradeMultiplier(upgrade);
-
-        return (baseMultiplier * stackSize * upgradeMultiplier) / totalSlots;
-    }
-
-    private int getUpgradeMultiplier(ItemStack item) {
-        if (item.isEmpty()) return 1;
-
-        Item upgradeItem = item.getItem();
-        return switch (upgradeItem.getDescriptionId()) {
-            case "item.justsimpledrawers.capacity_upgrade_t1" -> ServerConfig.capacityUpgradeT1Mult;
-            case "item.justsimpledrawers.capacity_upgrade_t2" -> ServerConfig.capacityUpgradeT2Mult;
-            case "item.justsimpledrawers.capacity_upgrade_t3" -> ServerConfig.capacityUpgradeT3Mult;
-            case "item.justsimpledrawers.capacity_upgrade_t4" -> ServerConfig.capacityUpgradeT4Mult;
-            case "item.justsimpledrawers.capacity_upgrade_t5" -> ServerConfig.capacityUpgradeT5Mult;
-            default -> 1;
-        };
-    }
 
     public DrawerSlot(int totalSlots) {
         this.totalSlots = totalSlots;
     }
 
-    // Insert items into this slot
-    public int insertItem(ItemStack stack) {
-        if (canAccept(stack)) {
-            int maxInsert = Math.min(stack.getCount(), getRemainingSpace());
-            count += maxInsert;
-            return maxInsert;
-        }
-        return 0;
+    // Capacity calculation
+    public int getCapacity() {
+        int baseMultiplier = ServerConfig.baseCapacity;
+        int stackSize = storedItem.isEmpty() ? 64 : storedItem.getMaxStackSize();;
+
+        return (baseMultiplier * stackSize * upgradeMultiplier) / totalSlots;
+    }
+
+    public int getRemainingCapacity() {
+        return Math.max(0, getCapacity() - count);
     }
 
     public boolean canAccept(ItemStack stack) {
@@ -61,59 +37,14 @@ public class DrawerSlot {
             (ItemStack.isSameItemSameComponents(storedItem, stack) && !locked);
     }
 
-    public int getRemainingSpace() {
-        return Math.max(0, getCapacity() - count);
-    }
-
-    public ItemStack getStoredItem() {
-        return storedItem;
-    }
-    public void setStoredItem(ItemStack stack) {
-        this.storedItem = stack;
-        this.count = 0; // Reset count when changing item
-    }
-
-    public ItemStack getUpgrade() {
-        return upgrade;
-    }
-    public void setUpgrade(ItemStack stack) {
-        this.upgrade = stack;
-        this.count = 0;
-    }
-
-    public int getItemCount() {
-        return count;
-    }
-    public void setItemCount(int count) {
-        this.count = count;
-    }
-
-    public boolean getLockedState() {
-        return locked;
-    }
-    public void toggleLockedState() {
-        this.locked = !locked;
-    }
-
-    public boolean getVoidMode() {
-        return voidMode;
-    }
-    public void toggleVoidMode() {
-        this.voidMode = !voidMode;
-    }
-
-    public boolean getHideDisplay() {
-        return hideDisplay;
-    }
-    public void toggleHideDisplay() {
-        this.hideDisplay = !hideDisplay;
-    }
-
-    public boolean getHideText() {
-        return hideText;
-    }
-    public void toggleHideAmount() {
-        this.hideText = !hideText;
+    // Insert items into this slot
+    public int insertItem(ItemStack stack) {
+        if (canAccept(stack)) {
+            int maxInsert = Math.min(stack.getCount(), getRemainingCapacity());
+            count += maxInsert;
+            return maxInsert;
+        }
+        return 0;
     }
 
     // Withdraw items
@@ -141,8 +72,6 @@ public class DrawerSlot {
     public CompoundTag save(HolderLookup.Provider registries) {
         CompoundTag tag = new CompoundTag();
 
-        //tag.put("item", storedItem.save(registries));
-        // Handle storedItem: save empty compound if stack is empty
         if (storedItem.isEmpty()) {
             tag.put("item", new CompoundTag()); // Empty tag placeholder
         } else {
@@ -150,24 +79,16 @@ public class DrawerSlot {
         }
 
         tag.putInt("count", count);
-
-        //tag.put("upgrade", upgrade.save(registries));
-        if (upgrade.isEmpty()) {
-            tag.put("upgrade", new CompoundTag()); // Empty tag placeholder
-        } else {
-            tag.put("upgrade", upgrade.save(registries));
-        }
-
         tag.putBoolean("locked", locked);
         tag.putBoolean("voidMode", voidMode);
-        tag.putBoolean("hideDisplay", hideDisplay);
-        tag.putBoolean("hideAmount", hideText);
+        tag.putBoolean("hideDisplay", hideItem);
+        tag.putBoolean("hideAmount", hideCount);
         return tag;
     }
+
     public void load(CompoundTag tag, HolderLookup.Provider registries) {
         CompoundTag itemTag = tag.getCompound("item");
 
-        // Handle empty item tag
         if (itemTag.isEmpty()) {
             storedItem = ItemStack.EMPTY;
         } else {
@@ -175,18 +96,25 @@ public class DrawerSlot {
         }
 
         count = tag.getInt("count");
-
-        CompoundTag upgradeTag = tag.getCompound("upgrade");
-        // Handle empty item tag
-        if (upgradeTag.isEmpty()) {
-            upgrade = ItemStack.EMPTY;
-        } else {
-            upgrade = ItemStack.parse(registries, upgradeTag).orElse(ItemStack.EMPTY);
-        }
-
         locked = tag.getBoolean("locked");
         voidMode = tag.getBoolean("voidMode");
-        hideDisplay = tag.getBoolean("hideDisplay");
-        hideText = tag.getBoolean("hideAmount");
+        hideItem = tag.getBoolean("hideDisplay");
+        hideCount = tag.getBoolean("hideAmount");
     }
+
+    // Getters and setters
+    public ItemStack getStoredItem() { return storedItem; }
+    public void setStoredItem(ItemStack item) { this.storedItem = item; count = 0;}
+    public int getCount() { return count; }
+    public void setCount(int count) { this.count = count; }
+    public boolean isLocked() { return locked; }
+    public void setLocked(boolean locked) { this.locked = locked; }
+    public boolean isVoidMode() { return voidMode; }
+    public void setVoidMode(boolean voidMode) { this.voidMode = voidMode; }
+    public boolean isHideItem() { return hideItem; }
+    public void setHideItem(boolean hideItem) { this.hideItem = hideItem; }
+    public boolean isHideCount() { return hideCount; }
+    public void setHideCount(boolean hideCount) { this.hideCount = hideCount; }
+
+    public void setUpgradeMultiplier(int multiplier) { this.upgradeMultiplier = multiplier; }
 }

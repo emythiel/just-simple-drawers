@@ -6,11 +6,11 @@ public class ClientConfig {
     public static final ModConfigSpec SPEC;
 
     private static final ModConfigSpec.IntValue ITEM_VIEW_DISTANCE;
-    private static final ModConfigSpec.IntValue TEXT_VIEW_DISTANCE;
+    private static final ModConfigSpec.IntValue COUNT_VIEW_DISTANCE;
     private static final ModConfigSpec.BooleanValue DECIMAL_SEPARATOR;
 
     public static int itemViewDistance;
-    public static int textViewDistance;
+    public static int countViewDistance;
     public static boolean decimalSeparator;
 
     static {
@@ -21,7 +21,7 @@ public class ClientConfig {
         ITEM_VIEW_DISTANCE = builder
             .comment("Sets the distance at which items on the drawers are rendered")
             .defineInRange("itemViewDistance", 24, 1, 128);
-        TEXT_VIEW_DISTANCE = builder
+        COUNT_VIEW_DISTANCE = builder
             .comment("Sets the distance at which text on the drawers are rendered")
             .defineInRange("textViewDistance", 16, 1, 128);
         DECIMAL_SEPARATOR = builder
@@ -34,7 +34,7 @@ public class ClientConfig {
 
     public static void load() {
         itemViewDistance = ITEM_VIEW_DISTANCE.get();
-        textViewDistance = TEXT_VIEW_DISTANCE.get();
+        countViewDistance = COUNT_VIEW_DISTANCE.get();
         decimalSeparator = DECIMAL_SEPARATOR.get();
     }
 }

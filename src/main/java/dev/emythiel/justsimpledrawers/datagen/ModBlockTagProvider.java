@@ -23,13 +23,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             .add(ModBlocks.DOUBLE_DRAWER.get())
             .add(ModBlocks.QUAD_DRAWER.get())
             .add(ModBlocks.COMPACTING_DRAWER.get())
-            .add(ModBlocks.CONTROLLER.get());
+            .add(ModBlocks.CONTROLLER.get())
+            .add(ModBlocks.CONNECTOR.get());
 
         tag(BlockTags.NEEDS_STONE_TOOL)
             .add(ModBlocks.SINGLE_DRAWER.get())
             .add(ModBlocks.DOUBLE_DRAWER.get())
             .add(ModBlocks.QUAD_DRAWER.get())
             .add(ModBlocks.COMPACTING_DRAWER.get())
-            .add(ModBlocks.CONTROLLER.get());
+            .add(ModBlocks.CONTROLLER.get())
+            .add(ModBlocks.CONNECTOR.get());
     }
 }

@@ -1,7 +1,7 @@
 package dev.emythiel.justsimpledrawers.events;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
-import dev.emythiel.justsimpledrawers.block.renderer.DrawerRenderer;
+import dev.emythiel.justsimpledrawers.client.renderer.DrawerRenderer;
 import dev.emythiel.justsimpledrawers.registry.ModBlockEntities;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;

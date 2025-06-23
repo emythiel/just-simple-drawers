@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public final class DrawerInteractionStatusManager {
+public final class DrawerInteractionManager {
     // Double-click time (in ticks)
     public static final int DOUBLE_CLICK_TICKS = 5; // ~0.25 seconds
 

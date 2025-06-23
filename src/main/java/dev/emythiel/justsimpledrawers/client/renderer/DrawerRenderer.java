@@ -1,4 +1,4 @@
-package dev.emythiel.justsimpledrawers.block.renderer;
+package dev.emythiel.justsimpledrawers.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -28,7 +28,7 @@ import net.minecraft.world.phys.Vec3;
 // 64, 32
 public class DrawerRenderer implements BlockEntityRenderer<StorageBlockEntity> {
     private static final int ITEM_DISTANCE = ClientConfig.itemViewDistance;
-    private static final int TEXT_DISTANCE = ClientConfig.textViewDistance;
+    private static final int TEXT_DISTANCE = ClientConfig.countViewDistance;
 
     public DrawerRenderer(BlockEntityRendererProvider.Context context) {}
 
@@ -89,8 +89,8 @@ public class DrawerRenderer implements BlockEntityRenderer<StorageBlockEntity> {
             itemRenderer.renderStatic(stack, ItemDisplayContext.GUI, light, packedOverlay, poseStack, bufferSource, null, 0);
 
             // Render the count if wihtin range, not zero and not hidden
-            if (distanceSq <= TEXT_DISTANCE*TEXT_DISTANCE && !slot.getHideText() && slot.getItemCount() > 0) {
-                renderText(poseStack, bufferSource, font, slot.getItemCount(), light);
+            if (distanceSq <= TEXT_DISTANCE*TEXT_DISTANCE && !slot.isHideCount() && slot.getCount() > 0) {
+                renderText(poseStack, bufferSource, font, slot.getCount(), light);
             }
 
             poseStack.popPose();

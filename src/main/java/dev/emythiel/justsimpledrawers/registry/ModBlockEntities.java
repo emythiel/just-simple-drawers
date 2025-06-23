@@ -2,8 +2,10 @@ package dev.emythiel.justsimpledrawers.registry;
 
 import dev.emythiel.justsimpledrawers.JustSimpleDrawers;
 import dev.emythiel.justsimpledrawers.block.entity.CompactingBlockEntity;
+import dev.emythiel.justsimpledrawers.block.entity.ControllerBlockEntity;
 import dev.emythiel.justsimpledrawers.block.entity.DrawerBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -13,7 +15,7 @@ import java.util.function.Supplier;
 
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
-        DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, JustSimpleDrawers.MOD_ID);
+        DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, JustSimpleDrawers.MOD_ID);
 
     public static final Supplier<BlockEntityType<DrawerBlockEntity>> DRAWER_BLOCK_ENTITY = BLOCK_ENTITIES.register(
         "drawer_block_entity",
@@ -34,6 +36,17 @@ public class ModBlockEntities {
             CompactingBlockEntity::new,
             Set.of(
                 ModBlocks.COMPACTING_DRAWER.get()
+            ),
+            null
+        )
+    );
+
+    public static final Supplier<BlockEntityType<ControllerBlockEntity>> CONTROLLER_BLOCK_ENTITY = BLOCK_ENTITIES.register(
+        "controller_block_entity",
+        () -> new BlockEntityType<>(
+            ControllerBlockEntity::new,
+            Set.of(
+                ModBlocks.CONTROLLER.get()
             ),
             null
         )

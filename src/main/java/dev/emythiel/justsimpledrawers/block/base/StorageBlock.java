@@ -2,7 +2,7 @@ package dev.emythiel.justsimpledrawers.block.base;
 
 import dev.emythiel.justsimpledrawers.block.entity.StorageBlockEntity;
 import dev.emythiel.justsimpledrawers.storage.DrawerSlot;
-import dev.emythiel.justsimpledrawers.util.DrawerInteractionStatusManager;
+import dev.emythiel.justsimpledrawers.util.DrawerInteractionManager;
 import dev.emythiel.justsimpledrawers.util.RaycastUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -61,7 +61,7 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
         ItemStack heldStack = player.getItemInHand(hand);
 
         // Check if double-right-click
-        boolean isDoubleClick = DrawerInteractionStatusManager.isDoubleClick(player, pos, slotIndex);
+        boolean isDoubleClick = DrawerInteractionManager.isDoubleClick(player, pos, slotIndex);
 
         if (isDoubleClick) {
             // Bulk insertion for double-click
@@ -87,7 +87,7 @@ public abstract class StorageBlock<T extends StorageBlockEntity> extends BaseBlo
                     stackInSlot.shrink(inserted);
                     totalInserted += inserted;
 
-                    if (slot.getRemainingSpace() == 0) break;
+                    if (slot.getRemainingCapacity() == 0) break;
                 }
             }
 
